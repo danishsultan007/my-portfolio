@@ -66,6 +66,20 @@ img { display: block; max-width: 100%; height: auto; }
   color: var(--muted); text-decoration: none; font-weight: 500; font-size: var(--fs-sm);
 }
 .site-header nav a:hover { color: var(--text); text-decoration: underline; }
+.dropdown { position: relative; }
+.dropdown-toggle {
+  display: inline-flex; align-items: center; gap: .3rem; min-height: 44px; padding: 0 .25rem;
+  background: none; border: 0; cursor: pointer;
+  color: var(--muted); font: 500 var(--fs-sm) var(--font-body);
+}
+.dropdown-toggle:hover, .dropdown-toggle[aria-expanded="true"] { color: var(--text); }
+.site-header nav .dropdown-menu {
+  display: block; position: absolute; z-index: 5; top: 100%; left: 0; min-width: 10rem; padding: .25rem;
+  background: var(--surface); border-radius: var(--r-md); box-shadow: var(--shadow);
+}
+.site-header nav .dropdown-menu[hidden] { display: none; }
+.site-header nav .dropdown-menu a { display: flex; padding: 0 var(--s-3); border-radius: var(--r-sm); }
+.site-header nav .dropdown-menu a:hover { background: var(--surface-2); text-decoration: none; }
 
 /* hero */
 .hero { padding-block: var(--s-6) var(--s-12); }

@@ -2,6 +2,25 @@
   var y = document.getElementById('y');
   if (y) y.textContent = new Date().getFullYear();
 
+  var dd = document.querySelector('.dropdown');
+  if (dd) {
+    var btn = dd.querySelector('.dropdown-toggle');
+    var menu = dd.querySelector('.dropdown-menu');
+    var setOpen = function (open) {
+      menu.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', function () { setOpen(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('click', function (e) { if (!dd.contains(e.target)) setOpen(false); });
+    dd.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); }
+    });
+    dd.addEventListener('focusout', function (e) {
+      if (!dd.contains(e.relatedTarget)) setOpen(false);
+    });
+  }
+
   var items = document.querySelectorAll('.reveal');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var each = Array.prototype.forEach;
